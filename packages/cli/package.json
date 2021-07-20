@@ -95,6 +95,7 @@
     "@stacks/stacking": "^2.0.0-beta.1",
     "@stacks/storage": "^2.0.0-beta.1",
     "@stacks/transactions": "^2.0.0-beta.1",
+    "@stacks/wallet-sdk": "^1.0.0-wallet-sdk.4",
     "ajv": "^4.11.5",
     "bip32": "^2.0.4",
     "bip39": "^3.0.2",

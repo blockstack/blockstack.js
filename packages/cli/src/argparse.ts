@@ -1240,10 +1240,10 @@ export const CLI_ARGS = {
           realtype: '12_words_or_ciphertext',
         },
         {
-          name: 'name_or_id_address',
+          name: 'index',
           type: 'string',
-          realtype: 'name-or-id-address',
-          pattern: `${NAME_PATTERN}|${SUBDOMAIN_PATTERN}|${ID_ADDRESS_PATTERN}`,
+          realtype: 'integer',
+          pattern: '^[0-9]+$',
         },
         {
           name: 'app_origin',
@@ -1255,33 +1255,19 @@ export const CLI_ARGS = {
       minItems: 3,
       maxItems: 3,
       help:
-        'Get the application private key from a 12-word backup phrase and a name or ID-address.  ' +
+        'Get the application private key from a 12- or 24-word Secret Key and an index of the enumerated associated accounts.  ' +
         'This is the private key used to sign data in Gaia, and its address is the Gaia bucket ' +
         'address.  If you provide your encrypted backup phrase, you will be asked to decrypt it.  ' +
-        'If you provide a name instead of an ID-address, its ID-address will be queried automatically ' +
-        '(note that this means that the name must already be registered).\n' +
-        '\n' +
-        'NOTE: This command does NOT verify whether or not the name or ID-address was created by the ' +
-        'backup phrase. You should do this yourself via the `get_owner_keys` command if you are not sure.\n' +
-        '\n' +
-        'There are two derivation paths emitted by this command:  a `keyInfo` path and a `legacyKeyInfo`' +
-        "path.  You should use the one that matches the Gaia hub read URL's address, if you have already " +
-        'signed in before.  If not, then you should use the `keyInfo` path when possible.\n' +
         '\n' +
         'Example:\n' +
         '\n' +
         '    $ export BACKUP_PHRASE="one race buffalo dynamic icon drip width lake extra forest fee kit"\n' +
-        '    $ stx get_app_keys "$BACKUP_PHRASE" example.id.blockstack https://my.cool.dapp\n' +
+        '    $ stx get_app_keys "$BACKUP_PHRASE" 1 https://my.cool.dapp\n' +
         '    {\n' +
         '      "keyInfo": {\n' +
         '        "privateKey": "TODO",\n' +
         '        "address": "TODO"\n' +
         '      },\n' +
-        '      "legacyKeyInfo": {\n' +
-        '        "privateKey": "90f9ec4e13fb9a00243b4c1510075157229bda73076c7c721208c2edca28ea8b",\n' +
-        '        "address": "1Lr8ggSgdmfcb4764woYutUfFqQMjEoKHc"\n' +
-        '      },\n' +
-        '      "ownerKeyIndex": 0\n' +
         '    }',
       group: 'Key Management',
     },

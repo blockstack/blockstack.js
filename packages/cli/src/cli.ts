@@ -101,7 +101,6 @@ import {
   getpass,
   getBackupPhrase,
   mkdirs,
-  getIDAddress,
   IDAppKeys,
   getIDAppKeys,
   makePromptsFromArgList,
@@ -112,6 +111,7 @@ import {
 } from './utils';
 
 import { handleAuth, handleSignIn } from './auth';
+import { generateNewAccount, generateWallet, getAppPrivateKey } from '@stacks/wallet-sdk';
 
 // global CLI options
 let txOnly = false;
@@ -263,19 +263,30 @@ function profileStore(network: CLINetworkAdapter, args: string[]): Promise<strin
 }
 
 /*
- * Get the app private key(s) from a backup phrase and an ID-address
+ * Get the app private key(s) from a backup phrase
+ * and an index of the enumerated accounts
  * args:
  * @mnemonic (string) the 12-word phrase
- * @nameOrIDAddress (string) the name or ID-address
+ * @index (number) the index of the account
  * @appOrigin (string) the application's origin URL
  */
 async function getAppKeys(network: CLINetworkAdapter, args: string[]): Promise<string> {
   const mnemonic = await getBackupPhrase(args[0]);
-  const nameOrIDAddress = args[1];
-  const origin = args[2];
-  const idAddress = await getIDAddress(network, nameOrIDAddress);
-  const networkInfo = await getApplicationKeyInfo(network, mnemonic, idAddress, origin);
-  return JSONStringify(networkInfo);
+  const index = parseInt(args[1]);
+  if (index <= 0) throw new Error('index must be greater than 0');
+  const appDomain = args[2];
+  let wallet = await generateWallet({ secretKey: mnemonic, password: '' });
+  for (let i = 0; i < index; i++) {
+    wallet = generateNewAccount(wallet);
+  }
+  const account = wallet.accounts[index - 1];
+  const privateKey = getAppPrivateKey({ account, appDomain });
+  const address = getAddressFromPrivateKey(
+    privateKey,
+    network.isMainnet() ? TransactionVersion.Mainnet : TransactionVersion.Testnet
+  );
+
+  return JSON.stringify({ keyInfo: { privateKey, address } });
 }
 
 /*
