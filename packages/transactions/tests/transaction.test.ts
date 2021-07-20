@@ -88,6 +88,8 @@ test('STX token transfer transaction serialization and deserialization', () => {
   //   '01051521ac2ac6e6123dcaf9dba000e0005d9855bcc1bc6b96aaf8b6a385238a2317' +
   //   'ab21e489aca47af3288cdaebd358b0458a9159cadc314cecb7dd08043c0a6d';
 
+  transaction.verifyOrigin();
+
   const serialized = transaction.serialize();
   const deserialized = deserializeTransaction(new BufferReader(serialized));
   
@@ -163,6 +165,8 @@ test('STX token transfer transaction fee setting', () => {
   // const signature =
   //   '01051521ac2ac6e6123dcaf9dba000e0005d9855bcc1bc6b96aaf8b6a385238a2317' +
   //   'ab21e489aca47af3288cdaebd358b0458a9159cadc314cecb7dd08043c0a6d';
+
+  transaction.verifyOrigin();
 
   const serialized = transaction.serialize();
   const deserialized = deserializeTransaction(new BufferReader(serialized));
@@ -245,6 +249,8 @@ test('STX token transfer transaction multi-sig serialization and deserialization
   signer.signOrigin(privKeys[1]);
   signer.appendOrigin(pubKeys[2]);
 
+  transaction.verifyOrigin();
+
   const serialized = transaction.serialize();
   const deserialized = deserializeTransaction(new BufferReader(serialized));
   expect(deserialized.version).toBe(transactionVersion);
@@ -312,6 +318,8 @@ test('STX token transfer transaction multi-sig uncompressed keys serialization a
   signer.signOrigin(privKeys[0]);
   signer.signOrigin(privKeys[1]);
   signer.appendOrigin(pubKeys[2]);
+
+  transaction.verifyOrigin();
 
   const serialized = transaction.serialize();
   
@@ -386,6 +394,8 @@ test('Sponsored STX token transfer transaction serialization and deserialization
   const signer = new TransactionSigner(transaction);
   signer.signOrigin(createStacksPrivateKey(secretKey));
   signer.signSponsor(createStacksPrivateKey(sponsorSecretKey));
+
+  transaction.verifyOrigin();
 
   const serialized = transaction.serialize();
   const deserialized = deserializeTransaction(new BufferReader(serialized));

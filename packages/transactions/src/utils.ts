@@ -110,6 +110,21 @@ export const hashP2PKH = (input: Buffer): string => {
 };
 
 // Internally, the Stacks blockchain encodes address the same as Bitcoin
+// single-sig address over p2sh (p2h-p2wpkh)
+export const hashP2WPKH = (input: Buffer): string => {
+  const keyHash = hash160(input);
+
+  const bufferArray = new BufferArray();
+  bufferArray.appendByte(0);
+  bufferArray.appendByte(keyHash.length);
+  bufferArray.push(keyHash);
+
+  const redeemScript = bufferArray.concatBuffer();
+  const redeemScriptHash = hash160(redeemScript);
+  return redeemScriptHash.toString('hex');
+};
+
+// Internally, the Stacks blockchain encodes address the same as Bitcoin
 // multi-sig address (p2sh)
 export const hashP2SH = (numSigs: number, pubKeys: Buffer[]): string => {
   if (numSigs > 15 || pubKeys.length > 15) {
@@ -129,6 +144,40 @@ export const hashP2SH = (numSigs: number, pubKeys: Buffer[]): string => {
   bufferArray.appendByte(80 + pubKeys.length);
   // OP_CHECKMULTISIG
   bufferArray.appendByte(174);
+
+  const redeemScript = bufferArray.concatBuffer();
+  const redeemScriptHash = hash160(redeemScript);
+  return redeemScriptHash.toString('hex');
+};
+
+// Internally, the Stacks blockchain encodes address the same as Bitcoin
+// multisig address over p2sh (p2sh-p2wsh)
+export const hashP2WSH = (numSigs: number, pubKeys: Buffer[]): string => {
+  if (numSigs > 15 || pubKeys.length > 15) {
+    throw Error('P2WSH multisig address can only contain up to 15 public keys');
+  }
+
+  // construct P2SH script
+  const scriptArray = new BufferArray();
+  // OP_n
+  scriptArray.appendByte(80 + numSigs);
+  // public keys prepended by their length
+  pubKeys.forEach(pubKey => {
+    scriptArray.appendByte(pubKey.length);
+    scriptArray.push(pubKey);
+  });
+  // OP_m
+  scriptArray.appendByte(80 + pubKeys.length);
+  // OP_CHECKMULTISIG
+  scriptArray.appendByte(174);
+
+  const script = scriptArray.concatBuffer();
+  const digest = new sha256().update(script).digest();
+
+  const bufferArray = new BufferArray();
+  bufferArray.appendByte(0);
+  bufferArray.appendByte(digest.length);
+  bufferArray.push(digest);
 
   const redeemScript = bufferArray.concatBuffer();
   const redeemScriptHash = hash160(redeemScript);
