@@ -10,6 +10,26 @@
   "workspaces": [
     "packages/**"
   ],
+  "release": {
+    "branches": [
+      "master",
+      "next"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "docs"
+          ],
+          "message": "chore(release docs): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
     "@stacks/eslint-config": "^1.0.9",
     "@stacks/prettier-config": "0.0.8",

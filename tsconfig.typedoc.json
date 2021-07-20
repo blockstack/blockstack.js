@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2020",
     "module": "ES6"
   },
   "typedocOptions": {
