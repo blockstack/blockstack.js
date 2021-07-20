@@ -88,7 +88,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@stacks/auth": "^1.2.3",
+    "@stacks/auth": "^2.0.0",
     "@stacks/blockchain-api-client": "^0.34.1",
     "@stacks/common": "^2.0.0-beta.0",
     "@stacks/network": "^1.2.2",
