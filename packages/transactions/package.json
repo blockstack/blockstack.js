@@ -1,6 +1,6 @@
 {
   "name": "@stacks/transactions",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "description": "Javascript library for constructing transactions on the Stacks blockchain.",
   "homepage": "https://blockstack.org",
   "license": "GPL-3.0-or-later",
@@ -40,7 +40,7 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "@stacks/common": "^2.0.0-beta.0",
+    "@stacks/common": "^2.0.0",
     "@stacks/network": "^1.2.2",
     "@types/bn.js": "^4.11.6",
     "@types/elliptic": "^6.4.12",

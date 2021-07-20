@@ -1,6 +1,6 @@
 {
   "name": "@stacks/wallet-sdk",
-  "version": "1.0.0-beta.21",
+  "version": "2.0.0",
   "description": "A library for generating Stacks blockchain wallets",
   "main": "./dist/index.js",
   "umd:main": "./dist/wallet-sdk.umd.production.js",
@@ -35,19 +35,19 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/node": "^13.13.10",
-    "yalc": "1.0.0-pre.49",
     "@types/jest": "^26.0.22",
+    "@types/node": "^13.13.10",
     "jest": "^26.6.3",
-    "jest-fetch-mock": "^3.0.3"
+    "jest-fetch-mock": "^3.0.3",
+    "yalc": "1.0.0-pre.49"
   },
   "dependencies": {
-    "@stacks/auth": "^2.0.0-beta.1",
-    "@stacks/common": "^2.0.0-beta.0",
-    "@stacks/encryption": "^2.0.0-beta.0",
-    "@stacks/profile": "^2.0.0-beta.1",
-    "@stacks/storage": "^2.0.0-beta.1",
-    "@stacks/transactions": "^2.0.0-beta.1",
+    "@stacks/auth": "^2.0.0",
+    "@stacks/common": "^2.0.0",
+    "@stacks/encryption": "^2.0.0",
+    "@stacks/profile": "^2.0.0",
+    "@stacks/storage": "^2.0.0",
+    "@stacks/transactions": "^2.0.0",
     "bip32": "2.0.6",
     "bip39": "^3.0.2",
     "bitcoinjs-lib": "^5.1.6",

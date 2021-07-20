@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/blockstack/blockstack.js/compare/v2.0.0-beta.1...v2.0.0) (2021-07-19)
+
+
+### Bug Fixes
+
+* fix stx balance command crash if address not valid ([8cc69df](https://github.com/blockstack/blockstack.js/commit/8cc69df21bc33eda6e9ec3cd6be6bfca2ec7b8ad))
+* fixed lint issue ([14e48dc](https://github.com/blockstack/blockstack.js/commit/14e48dc9abface83ca6cbc9240b7c2e4960caa9f))
+
+
+
+
+
 ## [1.4.1](https://github.com/blockstack/blockstack.js/compare/v1.4.1-alpha.0...v1.4.1) (2021-04-20)
 
 **Note:** Version bump only for package @stacks/cli

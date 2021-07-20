@@ -1,6 +1,6 @@
 {
   "name": "@stacks/cli",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "description": "Stacks command line tool",
   "keywords": [
     "stacks",
@@ -90,11 +90,11 @@
   "dependencies": {
     "@stacks/auth": "^1.2.3",
     "@stacks/blockchain-api-client": "^0.34.1",
-    "@stacks/common": "^2.0.0-beta.0",
+    "@stacks/common": "^2.0.0",
     "@stacks/network": "^1.2.2",
-    "@stacks/stacking": "^2.0.0-beta.1",
-    "@stacks/storage": "^2.0.0-beta.1",
-    "@stacks/transactions": "^2.0.0-beta.1",
+    "@stacks/stacking": "^2.0.0",
+    "@stacks/storage": "^2.0.0",
+    "@stacks/transactions": "^2.0.0",
     "ajv": "^4.11.5",
     "bip32": "^2.0.4",
     "bip39": "^3.0.2",
