@@ -1673,7 +1673,7 @@ function faucetCall(_: CLINetworkAdapter, args: string[]): Promise<string> {
     .then((faucetTx: any) => {
       return JSONStringify({
         txid: faucetTx.txId!,
-        transaction: generateExplorerTxPageUrl(faucetTx.txId!, new StacksTestnet()),
+        transaction: generateExplorerTxPageUrl(faucetTx.txId!.replace(/^0x/, ''), new StacksTestnet()),
       });
     })
     .catch((error: any) => error.toString());
