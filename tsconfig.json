@@ -9,6 +9,7 @@
       "@stacks/common": ["packages/common/src"],
       "@stacks/encryption": ["packages/encryption/src"],
       "@stacks/keychain": ["packages/keychain/src"],
+      "@stacks/did-resolver": ["packages/did-resolver/src"],
       "@stacks/network": ["packages/network/src"],
       "@stacks/profile": ["packages/profile/src"],
       "@stacks/stacking": ["packages/stacking/src"],

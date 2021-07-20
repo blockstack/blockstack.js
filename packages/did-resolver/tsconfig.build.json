@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./tsconfig.build.tsbuildinfo",
+    "composite": true
+  },
+  "references": [
+    {
+      "path": "../common/tsconfig.build.json"
+    },
+    {
+      "path": "../profile/tsconfig.build.json"
+    },
+    {
+      "path": "../network/tsconfig.build.json"
+    },
+    {
+      "path": "../transactions/tsconfig.build.json"
+    }
+  ],
+  "include": ["src/**/*"]
+}

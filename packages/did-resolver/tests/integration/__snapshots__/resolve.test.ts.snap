@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`did:stack:v2 resolver On-chain DIDs Should fail to resolve DID based on expired name 1`] = `[Error: NoMigratedNamesFound: No names owned by SP2P3MPMNHXKJG9BDA2W95NQK0C4W9XVXXAG753NG found at BNS inception]`;

@@ -1,0 +1,77 @@
+{
+  "name": "@stacks/did-resolver",
+  "version": "1.0.0-beta.1",
+  "author": {
+    "name": "Jolocom Dev",
+    "email": "dev@jolocom.com"
+  },
+  "homepage": "https://blockstack.org",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockstack/stacks.js.git"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/index.d.ts",
+  "umd:main": "dist/index.umd.js",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "npm run clean && npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -b tsconfig.build.json",
+    "build:esm": "tsc -p tsconfig.build.json --module ES6 --outDir ./dist/esm",
+    "build:umd": "webpack --config webpack.config.js",
+    "clean": "rimraf dist && tsc -b tsconfig.build.json --clean",
+    "prepublishOnly": "npm run test && npm run build && npm run build:umd",
+    "format": "prettier \"{,!(node_modules)/**/}*.ts\" --no-semi -w",
+    "test": "jest ./tests/unit/",
+    "test:watch": "npm run test -- --watch --coverage=false",
+    "test:integration": "jest ./tests/integration/resolve.test.ts",
+    "test:setup": "rm ./tests/integration/artifacts.json; ts-node ./tests/integration/setup.ts",
+    "test:all": "jest ./tests/unit/ ./tests/integration/",
+    "uni-resolver-driver": "docker build . -f uni-resolver-driver/Dockerfile -t jolocom/stacks-uni-resolver-driver && docker run --rm -it -p 8080:8080 jolocom/stacks-uni-resolver-driver"
+  },
+  "devDependencies": {
+    "@hapi/hapi": "^20.1.4",
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.4",
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.5",
+    "@types/node": "^14.14.43",
+    "@types/ramda": "^0.27.40",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "did-resolver": "^3.1.0",
+    "form-data": "^4.0.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.2.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@stacks/bns": "^2.0.0-beta.1",
+    "@stacks/network": "2.0.0-beta.0",
+    "@stacks/profile": "^2.0.0-beta.1",
+    "@stacks/transactions": "2.0.0-beta.0",
+    "bn.js": "^4.12.0",
+    "bs58": "^4.0.1",
+    "c32check": "^1.1.2",
+    "fluture": "^14.0.0",
+    "isomorphic-fetch": "^3.0.0",
+    "monet": "^0.9.2",
+    "ramda": "^0.27.1",
+    "zone-file": "^1.0.0"
+  },
+  "peerDependencies": {
+    "did-resolver": "^3.1.0"
+  }
+}

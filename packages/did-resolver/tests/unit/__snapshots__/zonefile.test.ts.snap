@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correctly finds the zonefile for subdomain given the domain name 1`] = `
+Object {
+  "owner": "SP28BXGR00VTYHW916WXQ84B96ZSP26ZJWTE4XM07",
+  "zonefile": "$ORIGIN htdhtfkihtdkhtd.id.blockstack
+$TTL 3600
+_http._tcp	IN	URI	10	1	\\"https://gaia.blockstack.org/hub/1ECLpyrNKKirXkh2xrWBrM4DN4YYbk68c9/profile.json\\"
+
+",
+}
+`;
+
+exports[`Correctly finds the zonefile for subdomain given the subdomain owner 1`] = `
+Object {
+  "fqn": "jackjoe666.id.blockstack",
+  "zonefile": "$ORIGIN jackjoe666.id.blockstack
+$TTL 3600
+_http._tcp	IN	URI	10	1	\\"https://gaia.blockstack.org/hub/163qawfFm3qKQfmssNEjwEij17ghcRCeyJ/profile.json\\"
+
+",
+}
+`;
